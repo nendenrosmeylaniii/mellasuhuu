@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kalkulator Konversi Suhu - Tema Pink</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #ffe6f0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      background-color: #fff0f5;
+      padding: 40px 30px;
+      border-radius: 15px;
+      box-shadow: 0 10px 20px rgba(255, 105, 180, 0.2);
+      width: 100%;
+      max-width: 350px;
+    }
+
+    h2 {
+      color: #d63384;
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: #b03060;
+    }
+
+    input[type="number"],
+    select {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ffb6c1;
+      border-radius: 8px;
+      font-size: 16px;
+      background-color: #fff;
+    }
+
+    input:focus, select:focus {
+      border-color: #ff69b4;
+      outline: none;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #ff69b4;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #ff1493;
+    }
+
+    .result {
+      margin-top: 25px;
+      font-size: 18px;
+      color: #b03060;
+      font-weight: bold;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>KALKULATOR SUHU</h2>
+    <h2>Nenden Rosmeylani</h2>
+    
+    <div class="form-group">
+      <label for="inputSuhu">Masukkan Suhu:</label>
+      <input type="number" id="inputSuhu" placeholder="Contoh: 30" />
+    </div>
+
+    <div class="form-group">
+      <label for="jenisKonversi">Pilih Konversi:</label>
+      <select id="jenisKonversi">
+        <option value="cToF">Celcius ke Fahrenheit</option>
+        <option value="fToC">Fahrenheit ke Celcius</option>
+        <option value="cToK">Celcius ke Kelvin</option>
+      </select>
+    </div>
+
+    <button onclick="konversiSuhu()">Konversi</button>
+
+    <div class="result" id="hasil"></div>
+  </div>
+
+  <script>
+    function konversiSuhu() {
+      const suhu = parseFloat(document.getElementById("inputSuhu").value);
+      const jenis = document.getElementById("jenisKonversi").value;
+      let hasil = "";
+
+      if (isNaN(suhu)) {
+        hasil = "Masukkan angka yang valid.";
+      } else {
+        switch (jenis) {
+          case "cToF":
+            hasil = `${suhu}°C = ${(suhu * 9/5 + 32).toFixed(2)}°F`;
+            break;
+          case "fToC":
+            hasil = `${suhu}°F = ${((suhu - 32) * 5/9).toFixed(2)}°C`;
+            break;
+          case "cToK":
+            hasil = `${suhu}°C = ${(suhu + 273.15).toFixed(2)}K`;
+            break;
+          default:
+            hasil = "Pilihan konversi tidak dikenali.";
+        }
+      }
+
+      document.getElementById("hasil").innerText = hasil;
+    }
+
+  </script>
+</body>
+</html>
